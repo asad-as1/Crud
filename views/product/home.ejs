@@ -1,0 +1,166 @@
+<% layout('layout/boilerplate') -%>
+<style>
+/* Alert Box */
+.alert {
+    margin-top: 200px;
+    color: rgb(130, 130, 175);
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+/* Page Container */
+.cont {
+    margin: 50px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px !important;
+}
+
+/* Heading */
+.cont h1 {
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Product Grid */
+.product-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    justify-content: center;
+}
+
+/* Product Card Styling */
+.card {
+    width: 400px !important;
+    min-height: 420px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+/* Image Styling */
+.card-img-top {
+    height: 250px;
+    object-fit: cover;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+/* Card Body */
+.card-body {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Buttons in the same row */
+.button-group {
+    display: flex;
+    gap: 10px;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.button-group form {
+    margin: 0;
+    width: 50%;
+}
+
+/* Product Title */
+.card-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+
+/* Product Description */
+.card-text {
+    font-size: 1rem;
+    color: #555;
+}
+
+/* Button Styles */
+.btn {
+    width: 100%;
+    font-size: 1rem;
+    padding: 8px 12px;
+    transition: background-color 0.3s ease-in-out;
+    flex: 1;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+}
+
+.btn-success:hover {
+    background-color: #218838;
+}
+
+.btn-danger:hover {
+    background-color: #c82333;
+}
+
+/* Responsive Grid */
+@media (max-width: 768px) {
+    .card {
+        width: 100%;
+    }
+
+    .alert {
+        margin-top: 100px;
+        font-size: 1.2rem;
+    }
+
+    .button-group {
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .btn {
+        width: 100%;
+    }
+}
+</style>
+
+<% if (products.length === 0) { %>
+    <div class="alert text-center" role="alert">
+        No University available.
+    </div>
+<% } else { %>
+    <div class="cont">
+        <h1>All Universities</h1>
+        <div class="product-grid">
+            <% for (let product of products) { %>
+                <div class="card">
+                    <!-- <img src="<%= product.universityId %>" class="card-img-top" alt="Product Image"> -->
+                    <div class="card-body">
+                        <h5 class="card-title">University Id: <%= product.universityId %></h5>
+                        <h5 class="card-title">University Name: <%= product.universityName %></h5>
+                        <h5 class="card-title">University Email: <%= product.contactEmail %></h5>
+                        <p class="card-text">Location: <%= product.location %></p>
+                        <p class="card-text"><strong>Number Of Students: </strong> <%= product.numberOfStudents %></p>
+                        <p class="card-text"><strong>Number Of Courses: </strong> <%= product.numberOfCourses %></p>
+                        <p class="card-text"><strong>Established Year: </strong> <%= product.establishedYear %></p>
+                        <div class="button-group">
+                            <a href="/p1/product/edit/<%= product._id %>" class="btn btn-success">Edit</a>
+                            <form action="/p1/product/<%= product._id%>?_method=DELETE" method="POST">
+                                <button class="btn btn-danger" type="submit">Delete</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            <% } %>
+        </div>
+    </div>
+<% } %>

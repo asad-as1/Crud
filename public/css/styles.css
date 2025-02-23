@@ -1,0 +1,38 @@
+/* Make the page take full viewport height */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Ensure the main container expands to push the footer down */
+.wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Make sure the footer stays at the bottom */
+.footer1 {
+    margin-top: auto;
+    width: 100%;
+    /* background-color: aqua; */
+}
+
+footer {
+    background-color: rgba(0, 0, 0, 0.05);
+    text-align: center;
+    padding: 10px;
+    /* background-color: aqua; */
+    border: 1px solid rgb(202, 199, 199);
+
+}
+header {
+    border: 1px solid rgb(202, 199, 199);
+}
+
+.ed{
+    margin-top: 20px;
+}
